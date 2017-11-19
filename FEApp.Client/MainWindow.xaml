@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FEApp.Client"
         xmlns:views="clr-namespace:FEApp.Client.Views"
         mc:Ignorable="d"
-        Title="MainWindow" WindowState="Maximized">
+        Title="File Explorer" WindowState="Maximized">
     <Grid>
         <views:FileExplorerView/>
     </Grid>
