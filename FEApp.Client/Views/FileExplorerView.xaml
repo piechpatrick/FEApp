@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="FEApp.Client.Views.FileExplorerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FEApp.Client.Views"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:common="clr-namespace:FEApp.Common;assembly=FEApp.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="18*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="DIRS BELOW: " HorizontalAlignment="Center"/>
+        <TreeView x:Name="treeDir" Grid.Row="1" Grid.Column="0" 
+                  ItemsSource="{Binding Path=Folder.SubFolders}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type common:Folder}" ItemsSource="{Binding SubFolders}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="24" Width="24" Source="../Resources/Global/Images/folder.png" />
+                        <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Path}" FontWeight="Bold" FontSize="24" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+        <Label Content="FILES BELOW: " HorizontalAlignment="Center" Grid.Column="1"/>
+        <ListView Grid.Row="1" Grid.Column="1" x:Name="listViewFile"
+                  ItemsSource="{Binding ElementName=treeDir,Path=SelectedItem.Files}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged" >
+                    <i:InvokeCommandAction Command="{Binding GetFileCommand}" CommandParameter="{Binding ElementName=listViewFile,Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="24" Width="24" Source="../Resources/Global/Images/file.png" />
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Refresh" Width="60" Command="{Binding RefreshCommand}"/>
+            <Button Content="Add" Width="60" Command="{Binding AddDirCommand}" CommandParameter="{Binding ElementName=treeDir,Path=SelectedItem.Path}" />
+            <Button Content="Delete" Command="{Binding DeleteDirCommand}" CommandParameter="{Binding ElementName=treeDir,Path=SelectedItem}" Width="60"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Delete" Width="60" Command="{Binding DeleteFileCommand}"
+                    CommandParameter="{Binding ElementName=listViewFile,Path=SelectedItem}"/>
+            <Button Content="Add" Width="60"/>
+            <Button Content="Download" Width="60" Command="{Binding DownloadFileCommand}" 
+                    CommandParameter="{Binding ElementName=listViewFile, Path=SelectedItem}"/>
+        </StackPanel>
+
+        <Image Grid.Column="3" Grid.Row="1" Source="{Binding PreviewImage}">
+        </Image>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2">
+            <Label Content="Download Path: "/>
+            <Label  Content="{Binding DownloadPath}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
