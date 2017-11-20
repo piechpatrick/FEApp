@@ -55,7 +55,7 @@
                   ItemsSource="{Binding ElementName=treeDir,Path=SelectedItem.Files}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged" >
-                    <i:InvokeCommandAction Command="{Binding GetFileCommand}" CommandParameter="{Binding ElementName=listViewFile,Path=SelectedItem}" />
+                    <i:InvokeCommandAction Command="{Binding GetFileCommand}" CommandParameter="{Binding ElementName=listViewFile,Path=SelectedItems}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ListView.ItemTemplate>

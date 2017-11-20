@@ -252,30 +252,31 @@ namespace FEApp.Client.ViewModels
         {
             Files.Clear();
             if (param != null)
-            {
-                var file = (Common.File)param;
-                var res = await _fileModel.GetFile(file);
-                if (res != null && res is Common.DownloadedFileInfo)
+            {           
+                var files = (param as IEnumerable<object>).Cast<Common.File>().ToList();
+
+                //if (files.Count == 1)
+                //    Files.Clear();
+                foreach (var file in files)
                 {
-                    if(res.Name.Contains(".png") || res.Name.Contains(".jpg"))
+                    var res = await _fileModel.GetFile(file);
+                    if (res != null && res is Common.DownloadedFileInfo)
                     {
-                        var imgFile = new Models.ImageFileContent(res);
-                        Files.Add(imgFile);
-                        return;
-                    }
-                    if (res.Name.Contains(".txt"))
-                    {
-                        var txtFile = new Models.TextFileContent(res);
-                        Files.Add(txtFile);
-                        return;
-                    }
-                    else
-                    {
-                        Files.Add(new Models.UnsupportedFIleContent(res));
-                    }
-                    //var image = FEApp.StaticTools.Utilities.Specific.ArratToImage(res.Buffor);
-                    //if(image != null)
-                    //    PreviewImage = image;
+                        if (res.Name.Contains(".png") || res.Name.Contains(".jpg"))
+                        {
+                            var imgFile = new Models.ImageFileContent(res);
+                            Files.Add(imgFile);
+                        }
+                        else if (res.Name.Contains(".txt"))
+                        {
+                            var txtFile = new Models.TextFileContent(res);
+                            Files.Add(txtFile);
+                        }
+                        else
+                        {
+                            Files.Add(new Models.UnsupportedFIleContent(res));
+                        }
+                    }              
                 }
             }
         }
