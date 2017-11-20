@@ -57,6 +57,11 @@
     </ApplicationDefinition>
     <Compile Include="BindableBase.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\FileContent.cs" />
+    <Compile Include="Models\ImageFileContent.cs" />
+    <Compile Include="Models\TextFileContent.cs" />
+    <Compile Include="Models\UnsupportedFIleContent.cs" />
+    <Compile Include="TemplateSelectors\FileTemplateSelectorcs.cs" />
     <Compile Include="ViewModels\FileExplorerViewModel.cs" />
     <Compile Include="Views\FileExplorerView.xaml.cs">
       <DependentUpon>FileExplorerView.xaml</DependentUpon>

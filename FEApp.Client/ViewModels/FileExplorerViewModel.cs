@@ -1,6 +1,7 @@
 ﻿using FEApp.Client.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -217,17 +218,49 @@ namespace FEApp.Client.ViewModels
             get { return _fileModel != null; }
         }
 
+        private ObservableCollection<Models.FileContent> _files;
+        public ObservableCollection<Models.FileContent> Files
+        {
+            get
+            {
+                if (_files == null)
+                    _files = new ObservableCollection<Models.FileContent>();
+                return _files;
+            }
+            set
+            {
+                SetProperty(ref _files, value);
+            }
+        }
+
         public async void GetFile(object param)
         {
+            Files.Clear();
             if (param != null)
             {
                 var file = (Common.File)param;
                 var res = await _fileModel.GetFile(file);
                 if (res != null && res is Common.DownloadedFileInfo)
                 {
-                    var image = FEApp.StaticTools.Utilities.Specific.ArratToImage(res.Buffor);
-                    if(image != null)
-                        PreviewImage = image;
+                    if(res.Name.Contains(".png") || res.Name.Contains(".jpg"))
+                    {
+                        var imgFile = new Models.ImageFileContent(res);
+                        Files.Add(imgFile);
+                        return;
+                    }
+                    if (res.Name.Contains(".txt"))
+                    {
+                        var txtFile = new Models.TextFileContent(res);
+                        Files.Add(txtFile);
+                        return;
+                    }
+                    else
+                    {
+                        Files.Add(new Models.UnsupportedFIleContent(res));
+                    }
+                    //var image = FEApp.StaticTools.Utilities.Specific.ArratToImage(res.Buffor);
+                    //if(image != null)
+                    //    PreviewImage = image;
                 }
             }
         }

@@ -6,8 +6,27 @@
              xmlns:local="clr-namespace:FEApp.Client.Views"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:common="clr-namespace:FEApp.Common;assembly=FEApp.Common"
+             xmlns:selectors="clr-namespace:FEApp.Client.TemplateSelectors"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="SimpleTemplate">
+            <Border BorderBrush="Black" Margin="50" BorderThickness="5">
+                <Label Content="Unsupported preview" HorizontalAlignment="Center"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ImageTemplate">
+            <Image Source="{Binding Path=Content}" Height="Auto" Width="Auto"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TextTemplate">
+            <TextBlock  Text="{Binding Path=Content}" Height="Auto" Width="Auto" TextWrapping="Wrap"/>
+        </DataTemplate>
+
+        <selectors:FileTemplateSelectorcs x:Key="fileTemplateSelector"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -61,8 +80,11 @@
                     CommandParameter="{Binding ElementName=listViewFile, Path=SelectedItem}"/>
         </StackPanel>
 
-        <Image Grid.Column="3" Grid.Row="1" Source="{Binding PreviewImage}">
-        </Image>
+        <ScrollViewer Grid.Column="3" Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Files}"
+                 ItemTemplateSelector="{StaticResource fileTemplateSelector}">
+            </ItemsControl>
+        </ScrollViewer>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2">
             <Label Content="Download Path: "/>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FEApp.Common
 {
-    public class DownloadedFileInfo
+    public class DownloadedFileInfo : IDownloadedFile
     {
         public string Path { get; set;}
         public string Name { get; set; }

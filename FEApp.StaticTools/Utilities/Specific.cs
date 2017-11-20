@@ -10,7 +10,7 @@ namespace FEApp.StaticTools.Utilities
 {
     public static class Specific
     {
-        public static BitmapImage ArratToImage(byte[] byteArrayIn)
+        public static BitmapImage ByteArratToImage(byte[] byteArrayIn)
         {
             if (byteArrayIn.Length > 0)
             {
@@ -36,6 +36,11 @@ namespace FEApp.StaticTools.Utilities
                 }
             }
             return null;
+        }
+
+        public static string ByteArrayToString(byte [] array)
+        {
+            return Encoding.Default.GetString(array);
         }
     }
 }
