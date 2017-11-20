@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,20 @@ namespace FEApp.Client.ViewModels
 
         Core.Models.FileExplorerModel _fileModel =
             new Core.Models.FileExplorerModel(path + "Files/");
+
+
+        private ICommand _openDownloadFolderCommand;
+        public ICommand OpenDownloadFolderCommand
+        {
+            get
+            {
+                if (_openDownloadFolderCommand == null)
+                    _openDownloadFolderCommand = new Commands.RelayCommand(
+                        p => this.CanOpenDownloadFolder,
+                        p => this.OpenDownloadFolder(p));
+                return _openDownloadFolderCommand;
+            }
+        }
 
         private ICommand _refreshCommand;
         public ICommand RefreshCommand
@@ -268,6 +283,16 @@ namespace FEApp.Client.ViewModels
         {
             get { return _fileModel != null; }
         }
+
+        public void OpenDownloadFolder(object param)
+        {
+            Process.Start(_downloadPath);
+        }
+        public bool CanOpenDownloadFolder
+        {
+            get { return true; }
+        }
+            
 
 
         #endregion

@@ -89,6 +89,7 @@
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2">
             <Label Content="Download Path: "/>
             <Label  Content="{Binding DownloadPath}"/>
+            <Button Height="20" Width="20" VerticalAlignment="Top" Command="{Binding OpenDownloadFolderCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
