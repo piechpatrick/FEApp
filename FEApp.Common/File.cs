@@ -8,8 +8,8 @@ using System.Runtime.Serialization;
 namespace FEApp.Common
 {
     [DataContract(Name = "File", Namespace = "FEApp.Common.File")]
-    [KnownType(typeof(File))]
-    public class File
+    [KnownType(typeof(FileInfo))]
+    public class FileInfo
     {
 
         public string Name
@@ -24,11 +24,11 @@ namespace FEApp.Common
         [DataMember]
         public string Path { get; set; }
 
-        public File(string path)
+        public FileInfo(string path)
         {
             Path = path;
         }
-        public File()
+        public FileInfo()
         {
 
         }

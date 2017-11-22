@@ -18,49 +18,14 @@ namespace FEApp.Client.Core.Models
             _endPoint = endpoint;
         }
 
-        public async Task<HttpResponseMessage> DeleteFile(Common.File file)
+        public async Task<HttpResponseMessage> DeleteFile(Common.FileInfo file)
         {
-            var deletePath = _endPoint + "delete";
-            var request = new HttpRequestMessage(HttpMethod.Delete, deletePath);
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(deletePath);
-                request.Content = new StringContent(Serialization.DataContractSerializeObject<Common.File>(file),
-                    Encoding.UTF8, "application/xml");
-
-                var response = await client.SendAsync(request);
-                return response;
-            }
+            return await HttpMessageSender.DeleteFile(file, _endPoint + "delete");
         }
 
-        public async Task<Common.DownloadedFileInfo> GetFile(Common.File file)
+        public async Task<Common.IDownloadedFile> GetFile(Common.FileInfo file)
         {
-            var uri = _endPoint + "get";
-            var request = new HttpRequestMessage(HttpMethod.Post, uri);
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(uri);
-                request.Content = new StringContent(Serialization.DataContractSerializeObject<Common.File>(file),
-                    Encoding.UTF8, "application/xml");
-
-                var response = await client.SendAsync(request);
-
-                var stream = await response.Content.ReadAsStreamAsync();
-
-                var buffer = new byte[stream.Length];
-
-                var result = await stream.ReadAsync(buffer,0,(int)stream.Length);
-
-                var downloadedFileInfo = new Common.DownloadedFileInfo()
-                {
-                    Path = DownloadPath + response.Content.Headers.ContentDisposition.FileName,
-                    Name = response.Content.Headers.ContentDisposition.FileName,
-                    Buffor = buffer
-                };
-                return downloadedFileInfo;
-            }
+            return await HttpMessageSender.GetFile(file, _endPoint + "get");
         }
 
     }

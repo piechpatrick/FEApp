@@ -161,13 +161,13 @@ namespace FEApp.Client.ViewModels
 
         public FileExplorerViewModel()
         {
-            Folder = _folderModel.GetFoldersAndDirs();
+            Folder = _folderModel.GetFilesAndDirs();
         }
 
         #region Commands
         public void Refresh(object param)
         {
-            Folder = _folderModel.GetFoldersAndDirs();
+            Folder = _folderModel.GetFilesAndDirs();
         }
         public bool CanRefresh
         {
@@ -202,7 +202,7 @@ namespace FEApp.Client.ViewModels
 
         public async void DeleteFile(object param)
         {
-            var file = (Common.File)param;
+            var file = (Common.FileInfo)param;
             if (file != null)
             {
                 var res = await _fileModel.DeleteFile(file);
@@ -217,7 +217,7 @@ namespace FEApp.Client.ViewModels
 
         public async void DownloadFile(object param)
         {
-            var file = (Common.File)param;
+            var file = (Common.FileInfo)param;
             if (file != null)
             {
                 var res = await _fileModel.GetFile(file);
@@ -253,7 +253,7 @@ namespace FEApp.Client.ViewModels
             Files.Clear();
             if (param != null)
             {           
-                var files = (param as IEnumerable<object>).Cast<Common.File>().ToList();
+                var files = (param as IEnumerable<object>).Cast<Common.FileInfo>().ToList();
                 if (files != null)
                 {
                     foreach (var file in files)

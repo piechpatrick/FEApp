@@ -23,7 +23,7 @@ namespace FEApp.Service.Controllers
 
         [HttpPost]
         [Route("api/Files/get")]
-        public HttpResponseMessage GetFile([FromBody] Common.File file)
+        public HttpResponseMessage GetFile([FromBody] Common.FileInfo file)
         {
             return FileAsAttachment(file.Path, file.Name);
         }
@@ -46,7 +46,7 @@ namespace FEApp.Service.Controllers
 
         [HttpDelete]
         [Route("api/Files/delete")]
-        public void Delete([FromBody]Common.File file)
+        public void Delete([FromBody]Common.FileInfo file)
         {
             model.Delete(file);
         }

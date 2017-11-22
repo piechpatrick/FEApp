@@ -14,7 +14,7 @@ namespace FEApp.Service.Models
 
         }
 
-        internal bool Delete(Common.File file)
+        internal bool Delete(Common.FileInfo file)
         {
             try
             {

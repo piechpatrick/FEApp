@@ -55,7 +55,8 @@
                   ItemsSource="{Binding ElementName=treeDir,Path=SelectedItem.Files}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged" >
-                    <i:InvokeCommandAction Command="{Binding GetFileCommand}" CommandParameter="{Binding ElementName=listViewFile,Path=SelectedItems}" />
+                    <i:InvokeCommandAction Command="{Binding GetFileCommand}" 
+                                           CommandParameter="{Binding ElementName=listViewFile,Path=SelectedItems}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ListView.ItemTemplate>
@@ -69,8 +70,10 @@
         </ListView>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Refresh" Width="60" Command="{Binding RefreshCommand}"/>
-            <Button Content="Add" Width="60" Command="{Binding AddDirCommand}" CommandParameter="{Binding ElementName=treeDir,Path=SelectedItem.Path}" />
-            <Button Content="Delete" Command="{Binding DeleteDirCommand}" CommandParameter="{Binding ElementName=treeDir,Path=SelectedItem}" Width="60"/>
+            <Button Content="Add" Width="60" Command="{Binding AddDirCommand}" 
+                    CommandParameter="{Binding ElementName=treeDir,Path=SelectedItem.Path}" />
+            <Button Content="Delete" Command="{Binding DeleteDirCommand}" 
+                    CommandParameter="{Binding ElementName=treeDir,Path=SelectedItem}" Width="60"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Delete" Width="60" Command="{Binding DeleteFileCommand}"

@@ -15,7 +15,7 @@ namespace FEApp.StaticTools.Utilities
             {
                 foreach (var f in Directory.GetFiles(folder.Path))
                 {
-                    folder.Files.Add(new Common.File(f));
+                    folder.Files.Add(new Common.FileInfo(f));
                 }
 
                 foreach (var d in Directory.GetDirectories(folder.Path))

@@ -10,10 +10,9 @@ namespace FEApp.Common
 {
     [DataContract(Name ="Folder", Namespace ="FEApp.Common.Folder")]
     [KnownType(typeof(Folder))]
-    [KnownType(typeof(File))]
+    [KnownType(typeof(FileInfo))]
     public class Folder 
     {
-
         public string Name
         {
             get
@@ -42,14 +41,14 @@ namespace FEApp.Common
             }
         }
 
-        private List<File> _files;
+        private List<FileInfo> _files;
         [DataMember]
-        public List<File> Files
+        public List<FileInfo> Files
         {
             get
             {
                 if (_files == null)
-                    _files = new List<File>();
+                    _files = new List<FileInfo>();
                 return _files;
             }
             set

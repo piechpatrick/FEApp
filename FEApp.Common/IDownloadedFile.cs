@@ -8,6 +8,7 @@ namespace FEApp.Common
 {
     public interface IDownloadedFile
     {
+        string Path { get; set; }
         string Name { get; set; }
         byte[] Buffor { get; set; }
     }
