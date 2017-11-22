@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\DownloadedFileInfo.cs" />
+    <Compile Include="Entities\IDownloadedFile.cs" />
     <Compile Include="HttpMessageSender.cs" />
     <Compile Include="Models\FileExplorerModel.cs" />
     <Compile Include="Models\FolderExplorerModel.cs" />

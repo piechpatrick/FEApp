@@ -31,7 +31,7 @@ namespace FEApp.Client.Core
 
                 var result = await stream.ReadAsync(buffer, 0, (int)stream.Length);
 
-                var downloadedFileInfo = new Common.DownloadedFileInfo()
+                var downloadedFileInfo = new DownloadedFileInfo()
                 {
                     Path = Paths.DownloadPath + response.Content.Headers.ContentDisposition.FileName,
                     Name = response.Content.Headers.ContentDisposition.FileName,
@@ -82,7 +82,6 @@ namespace FEApp.Client.Core
         }
 
         //now supported 1 directory from server,
-        //
         internal static Common.Folder GetMyFilesAndDirs(string uri)
         {
             var req = (HttpWebRequest)WebRequest.Create(uri);

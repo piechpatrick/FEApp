@@ -1,4 +1,5 @@
-﻿using FEApp.Client.Core.Models;
+﻿using FEApp.Client.Core;
+using FEApp.Client.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -221,7 +222,7 @@ namespace FEApp.Client.ViewModels
             if (file != null)
             {
                 var res = await _fileModel.GetFile(file);
-                if (res != null && res is Common.DownloadedFileInfo)
+                if (res != null && res is DownloadedFileInfo)
                 {
                     File.WriteAllBytes(res.Path, res.Buffor);
                     Refresh(null);
@@ -259,7 +260,7 @@ namespace FEApp.Client.ViewModels
                     foreach (var file in files)
                     {
                         var res = await _fileModel.GetFile(file);
-                        if (res != null && res is Common.DownloadedFileInfo)
+                        if (res != null && res is DownloadedFileInfo)
                         {
                             if (res.Name.Contains(".png") || res.Name.Contains(".jpg"))
                             {

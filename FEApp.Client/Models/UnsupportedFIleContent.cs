@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FEApp.Client.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace FEApp.Client.Models
 {
     public class UnsupportedFIleContent : FileContent
     {
-        public UnsupportedFIleContent(Common.IDownloadedFile file)
+        public UnsupportedFIleContent(IDownloadedFile file)
             :base(file)
         {
 

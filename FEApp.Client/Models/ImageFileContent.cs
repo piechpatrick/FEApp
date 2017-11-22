@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FEApp.Client.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace FEApp.Client.Models
 {
     public class ImageFileContent : FileContent
     {
-        public ImageFileContent(Common.IDownloadedFile file)
+        public ImageFileContent(IDownloadedFile file)
             :base(file)
         {
             Content = StaticTools.Utilities.Specific.ByteArratToImage(file.Buffor);

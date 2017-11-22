@@ -41,10 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DownloadedFileInfo.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Folder.cs" />
-    <Compile Include="IDownloadedFile.cs" />
     <Compile Include="NewFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

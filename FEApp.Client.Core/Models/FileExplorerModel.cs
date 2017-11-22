@@ -23,7 +23,7 @@ namespace FEApp.Client.Core.Models
             return await HttpMessageSender.DeleteFile(file, _endPoint + "delete");
         }
 
-        public async Task<Common.IDownloadedFile> GetFile(Common.FileInfo file)
+        public async Task<IDownloadedFile> GetFile(Common.FileInfo file)
         {
             return await HttpMessageSender.GetFile(file, _endPoint + "get");
         }

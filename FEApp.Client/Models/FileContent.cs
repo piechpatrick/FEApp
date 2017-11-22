@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FEApp.Client.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace FEApp.Client.Models
 {
     public abstract class FileContent : BindableBase
     {
-        protected Common.IDownloadedFile File { get; private set; }
-        public FileContent(Common.IDownloadedFile file)
+        protected IDownloadedFile File { get; private set; }
+        public FileContent(IDownloadedFile file)
         {
             File = file;
         }

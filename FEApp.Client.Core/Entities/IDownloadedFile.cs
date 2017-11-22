@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FEApp.Common
+namespace FEApp.Client.Core
 {
     public interface IDownloadedFile
     {
