@@ -110,7 +110,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\FoldersController.cs" />
-    <Compile Include="EntryPath.cs" />
+    <Compile Include="Paths.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

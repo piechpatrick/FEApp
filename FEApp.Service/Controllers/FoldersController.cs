@@ -12,7 +12,7 @@ namespace FEApp.Service.Controllers
     {
 
         FoldersControllerModel model = 
-            new FoldersControllerModel(EntryPathOptions.EntryPath);
+            new FoldersControllerModel(Paths.SharedDirPath);
 
         // GET: api/Folders
         public Common.Folder Get()

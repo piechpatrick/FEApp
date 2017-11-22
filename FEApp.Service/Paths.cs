@@ -5,8 +5,8 @@ using System.Web;
 
 namespace FEApp.Service
 {
-    public class EntryPathOptions
+    public class Paths
     {
-        public static readonly string EntryPath = @"C:\Users\root\Desktop\Test";
+        public static readonly string SharedDirPath = @"C:\Users\root\Desktop\Test";
     }
 }
